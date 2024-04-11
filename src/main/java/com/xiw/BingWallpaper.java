@@ -112,7 +112,8 @@ public class BingWallpaper {
     }
 
     private static void saveJson(String result, String mkt) {
-        String dirPath = "./resources/json/" + LocalDate.now() + File.separator;
+        LocalDate now = LocalDate.now();
+        String dirPath = "./resources/json/" + now.toString().substring(0, 4) + File.separator + now + File.separator;
         File file = new File(dirPath + LocalDateTime.now() + "_" + mkt + ".json");
         FileUtil.writeString(result, file, Charset.defaultCharset());
     }
