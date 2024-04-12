@@ -26,8 +26,8 @@ jobs:
         run:  java -jar target/bing-wallpaper-jar-with-dependencies.jar
       - name: Commit files
         run: |
-          git config --local user.email "robot@gmail.com"
-          git config --local user.name "robot"
+          git config --local user.email "tongjiann@gmail.com"
+          git config --local user.name "ROBOT"
           git add .
           git commit -m "upload resources"
       - name: Push changes
