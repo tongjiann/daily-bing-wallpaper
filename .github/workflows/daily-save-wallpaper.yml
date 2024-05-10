@@ -60,3 +60,11 @@ jobs:
               issue_number: result.data.number,
               labels: ['automerge']
           });
+          return result.data.number
+    - id: automerge
+      name: automerge
+      uses: "pascalgn/automerge-action@v0.16.3"
+      env:
+          GITHUB_TOKEN: "${{ secrets.MY_GIT_TOKEN }}"
+          MERGE_DELETE_BRANCH: "true"
+          PULL_REQUEST: ${{ steps.cpr.outputs.result }}
