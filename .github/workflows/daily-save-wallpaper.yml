@@ -23,6 +23,19 @@ jobs:
     - name: Run Java Application
       run:  java -jar target/bing-wallpaper-jar-with-dependencies.jar
 
+    - name: Commit files
+      run: |
+        git config --local user.email "tongjiann@gmail.com"
+        git config --local user.name "ROBOT"
+        git add .
+        git commit -m "upload resources"
+
+    - name: Push changes
+      uses:  ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.MY_GIT_TOKEN }}
+        branch: pr-branch
+
     - name: Create Pull Request
       uses: actions/github-script@v6
       with:
