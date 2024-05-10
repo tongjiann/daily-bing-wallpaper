@@ -38,12 +38,13 @@ jobs:
         force: "true"
 
     - name: Create Pull Request
+      id: cpr
       uses: actions/github-script@v6
       with:
         script: |
           const { repo, owner } = context.repo;
           const result = await github.rest.pulls.create({
-            title: '[Example] Simple demo',
+            title: 'update resources',
             owner,
             repo,
             head: 'pr-branch',
