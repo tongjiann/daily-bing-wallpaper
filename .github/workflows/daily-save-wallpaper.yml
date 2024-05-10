@@ -1,0 +1,46 @@
+name: daily-save-wallpaper.yml
+on:
+  workflow_dispatch:
+  # push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: code
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3.13.0
+      with:
+        java-version: '17'
+        distribution: 'zulu'
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Run Java Application
+      run:  java -jar target/bing-wallpaper-jar-with-dependencies.jar
+
+    - name: Create pull request
+      id: cpr
+      uses: peter-evans/create-pull-request@v6
+      with:
+        base: main
+        branch: pr-branch
+        commit-message: update resources
+        title: update resources
+        body: update resources
+
+    # - name: delay
+    #   run: sleep 3
+
+    # - name: automerge
+    #   if: ${{ steps.cpr.outputs.pull-request-number }}
+    #   uses: "pascalgn/automerge-action@v0.16.3"
+    #   env:
+    #     GITHUB_TOKEN: "${{ secrets.PAT }}"
+    #     MERGE_LABELS: ""
+    #     MERGE_DELETE_BRANCH: "true"
+    #     PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-number }}
