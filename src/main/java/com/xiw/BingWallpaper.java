@@ -94,7 +94,7 @@ public class BingWallpaper {
         List<String> urlList = new ArrayList<>();
         AREA_LIST.forEach(area -> {
             urlList.add("https://www.bing.com/HPImageArchive.aspx?format=js&pid=hp&og=1&idx=0&n=8&&mbl=1&cc=" + area);
-            urlList.add("https://www.bing.com/HPImageArchive.aspx?format=js&pid=hp&og=1&idx=7&n=8&&mbl=1&cc=" + area);
+            // urlList.add("https://www.bing.com/HPImageArchive.aspx?format=js&pid=hp&og=1&idx=7&n=8&&mbl=1&cc=" + area);
             // urlList.add("https://www.bing.com/HPImageArchive.aspx?format=js&pid=hp&og=1&idx=7&n=8&&mbl=1&cc=" + area);
         });
         return urlList;
@@ -107,8 +107,8 @@ public class BingWallpaper {
             Response response = JSONUtil.toBean(result, Response.class);
             setExtraInfo(response);
             saveJson(result, response.getMarket().getMkt());
-            return response.getImages();
-        }).flatMap(Collection::stream).collect(Collectors.toList());
+            return response.getImages().get(0);
+        }).collect(Collectors.toList());
     }
 
     private static void saveJson(String result, String mkt) {
