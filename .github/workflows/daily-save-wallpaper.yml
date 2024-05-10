@@ -55,6 +55,9 @@ jobs:
             ].join('\n')
           });
 
+    - name: delay
+      run: sleep 3
+
     - name: automerge
       if: ${{ steps.cpr.outputs.pull-request-number }}
       uses: "pascalgn/automerge-action@v0.16.3"
