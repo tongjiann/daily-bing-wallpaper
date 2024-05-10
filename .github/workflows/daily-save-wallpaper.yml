@@ -54,15 +54,9 @@ jobs:
               '[actions/github-script](https://github.com/actions/github-script).'
             ].join('\n')
           });
-
-    - name: delay
-      run: sleep 3
-
-    - name: automerge
-      if: ${{ steps.cpr.outputs.pull-request-number }}
-      uses: "pascalgn/automerge-action@v0.16.3"
-      env:
-        GITHUB_TOKEN: "${{ secrets.MY_GIT_TOKEN }}"
-        MERGE_LABELS: ""
-        MERGE_DELETE_BRANCH: "true"
-        PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-number }}
+          github.rest.issues.addLabels({
+              owner,
+              repo,
+              issue_number: result.data.number,
+              labels: ['automerge']
+          });
