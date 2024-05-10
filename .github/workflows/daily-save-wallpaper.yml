@@ -1,7 +1,8 @@
 name: daily-save-wallpaper.yml
 on:
   workflow_dispatch:
-  # push:
+  schedule:
+    - cron:  '00 8 * * *'
 
 jobs:
   build:
