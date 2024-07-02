@@ -2,3 +2,5 @@
 
 
 ![repo-size](https://img.shields.io/github/repo-size/tongjiann/daily-bing-wallpaper)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/753e47fd-5d79-427e-9709-7e25cf789145/deploy-status)](https://app.netlify.com/sites/bing-wp/deploys)
